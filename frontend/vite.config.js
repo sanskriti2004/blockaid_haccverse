@@ -11,5 +11,5 @@ import react from '@vitejs/plugin-react-swc' // Changed from plugin-react to plu
 
 export default defineConfig({
     plugins: [react()],
-    base: process.env.VITE_BASE_PATH || '/blockaid_haccverse',
+    base: '/blockaid_haccverse',
 })
