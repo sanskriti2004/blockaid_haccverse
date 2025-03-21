@@ -1,11 +1,11 @@
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+// const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-const DecentradeModule = buildModule("DecentradeModule", (m) => {
-    const decentradeNFT = m.contract("DecentradeNFT");
+// const DecentradeModule = buildModule("DecentradeModule", (m) => {
+//     const decentradeNFT = m.contract("DecentradeNFT");
 
-    const decentradeMarketplace = m.contract("DecentradeMarketplace");
+//     const decentradeMarketplace = m.contract("DecentradeMarketplace");
 
-    return { decentradeNFT, decentradeMarketplace };
-});
+//     return { decentradeNFT, decentradeMarketplace };
+// });
 
-module.exports = DecentradeModule;
+// module.exports = DecentradeModule;
