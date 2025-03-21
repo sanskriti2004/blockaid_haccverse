@@ -1,0 +1,230 @@
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem 1rem;
+    background-color: #252550;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+}
+
+.logo-img {
+    width: 2.5rem;
+    margin-right: 0.5rem;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.navbar-link {
+    color: #ccc;
+    text-decoration: none;
+    position: relative;
+    transition:
+        color 0.3s,
+        text-shadow 0.3s;
+}
+
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #ff00ff;
+    transition: width 0.3s ease;
+}
+
+.navbar-link:hover::after {
+    width: 100%;
+    left: 0;
+    background: #ff00ff;
+}
+
+.navbar-link:hover {
+    color: white;
+    text-shadow:
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff,
+        0 0 30px #ff00ff;
+}
+
+.navbar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-container {
+    position: relative;
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+.search-input {
+    width: 100%;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    box-shadow: 0 0 10px #ff00ff;
+    transition: box-shadow 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff00ff;
+}
+
+.github-button,
+.connect-wallet-button,
+.mint-nft-button {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+    white-space: nowrap;
+}
+
+.github-button:hover,
+.connect-wallet-button:hover,
+.mint-nft-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+.connect-wallet-button[style*='green'] {
+    background: #53b753 !important;
+}
+
+.mode-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.toggle-button {
+    background: linear-gradient(90deg, #4a90e2, #9013fe);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.05rem 0.2rem;
+    border-radius: 50%;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-button:hover {
+    background: linear-gradient(90deg, #9013fe, #4a90e2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode {
+    background-color: #2b2929;
+    color: #e0e0e0;
+}
+
+.navbar.dark-mode {
+    background-color: #2a2929;
+}
+
+.hamburger-menu {
+    display: none;
+}
+
+.hamburger-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .navbar-logo {
+        margin-bottom: 0;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+    }
+
+    .navbar-links.open {
+        display: flex;
+    }
+
+    .navbar-actions {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .search-container {
+        max-width: none;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-actions {
+        flex-direction: column;
+        align-items: stretch;
+        display: none;
+    }
+
+    .github-button,
+    .connect-wallet-button,
+    .mint-nft-button {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
