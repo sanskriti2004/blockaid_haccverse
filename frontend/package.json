@@ -1,5 +1,6 @@
 {
     "name": "frontend",
+    "homepage": "https://sanskriti2004.github.io/blockaid_haccverse/",
     "private": true,
     "version": "0.0.0",
     "type": "module",

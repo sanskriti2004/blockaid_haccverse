@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Search, Menu, X } from 'lucide-react'
 import logo from '../assets/decentrade-logo.png'
 import './Navbar.css'
-import { connectWallet, mintNFT } from '../utils/ethereum'
 
 const Navbar = ({ wallet, setWallet }) => {
     const [tokenURI, setTokenURI] = useState('')
