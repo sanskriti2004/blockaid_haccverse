@@ -1,38 +1,53 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { ethers } from 'ethers'
 import { Search, Menu, X } from 'lucide-react'
 import logo from '../assets/decentrade-logo.png'
 import './Navbar.css'
 
-const Navbar = ({ wallet, setWallet }) => {
-    const [tokenURI, setTokenURI] = useState('')
-    const [showMintOption, setShowMintOption] = useState(false)
+const Navbar = () => {
+    const [walletAddress, setWalletAddress] = useState(null)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-    const connect = async () => {
-        const signer = await connectWallet()
-        setWallet(signer)
-        setShowMintOption(true)
-    }
-
-    const handleMint = async () => {
-        if (wallet && tokenURI) {
+    // Function to connect MetaMask wallet
+    const connectWallet = async () => {
+        if (window.ethereum) {
             try {
-                await mintNFT(wallet, tokenURI)
-                alert('NFT minted successfully!')
-                setTokenURI('')
+                const accounts = await window.ethereum.request({
+                    method: 'eth_requestAccounts',
+                })
+                setWalletAddress(accounts[0])
             } catch (error) {
-                console.error('Error minting NFT:', error)
-                alert('Failed to mint NFT. Please try again.')
+                console.error('User rejected the request:', error)
             }
         } else {
-            alert('Please enter a token URI.')
+            alert(
+                'MetaMask is not installed. Please install it to use this app.'
+            )
         }
     }
 
+    // Function to toggle the mobile menu
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
     }
+
+    // Monitor account changes
+    useEffect(() => {
+        if (window.ethereum) {
+            window.ethereum.on('accountsChanged', (accounts) => {
+                if (accounts.length > 0) {
+                    setWalletAddress(accounts[0])
+                } else {
+                    setWalletAddress(null)
+                }
+            })
+
+            window.ethereum.on('chainChanged', () => {
+                window.location.reload()
+            })
+        }
+    }, [])
 
     const navItems = [
         { name: 'Home', link: '/' },
@@ -42,7 +57,7 @@ const Navbar = ({ wallet, setWallet }) => {
     ]
 
     return (
-        <nav className={`navbar`}>
+        <nav className="navbar">
             <div className="navbar-logo">
                 <Link to="/">
                     <img
@@ -56,8 +71,7 @@ const Navbar = ({ wallet, setWallet }) => {
 
             <div className="hamburger-menu">
                 <button onClick={toggleMenu} className="hamburger-button">
-                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{' '}
-                    {/* Conditional icon rendering */}
+                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
@@ -75,7 +89,7 @@ const Navbar = ({ wallet, setWallet }) => {
             </div>
 
             <div className="navbar-actions">
-                {wallet ? (
+                {walletAddress ? (
                     <button
                         className="connect-wallet-button"
                         style={{ backgroundColor: 'green' }}
@@ -83,7 +97,10 @@ const Navbar = ({ wallet, setWallet }) => {
                         Wallet Connected
                     </button>
                 ) : (
-                    <button onClick={connect} className="connect-wallet-button">
+                    <button
+                        onClick={connectWallet}
+                        className="connect-wallet-button"
+                    >
                         Connect Wallet
                     </button>
                 )}
