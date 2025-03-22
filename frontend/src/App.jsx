@@ -31,7 +31,7 @@ function App() {
                 <main className="flex-grow">
                     <Routes>
                         <Route
-                            path="/blockaid_haccverse"
+                            path="/blockaid_haccverse/"
                             element={
                                 <HomePage
                                     wallet={wallet}

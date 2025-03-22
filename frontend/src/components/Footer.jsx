@@ -64,8 +64,11 @@ const Footer = () => {
                         </h4>
                         <ul className="space-y-2">
                             <li>
-                                <a className="text-gray-400 hover:text-white transition-colors">
-                                    <Link to="/"> Home</Link>
+                                <a
+                                    href="/"
+                                    className="text-gray-400 hover:text-white transition-colors"
+                                >
+                                    Home
                                 </a>
                             </li>
                             <li>
