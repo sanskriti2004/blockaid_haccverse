@@ -1,17 +1,10 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
-const RequestAidPage = () => {
-    const navigate = useNavigate()
+const DonateForm = () => {
     const [formData, setFormData] = useState({
-        fullName: '',
-        email: '',
-        phoneNumber: '',
-        aadhaarNumber: '',
-        walletAddress: '',
+        donorName: '',
+        donationAmount: '',
     })
-
-    const [isSubmitting, setIsSubmitting] = useState(false) // Track form submission state
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -20,139 +13,63 @@ const RequestAidPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        // Simulate form submission
-        setIsSubmitting(true)
-
-        // Simulate a delay (e.g., API call)
-        setTimeout(() => {
-            console.log('Form Data Submitted:', formData) // Log form data to the console
-            setIsSubmitting(false)
-
-            // Navigate to the "Thank You" page after submission
-            navigate('/thank-you')
-        }, 2000) // Simulate a 2-second delay
+        // Handle the form submission logic here
+        console.log('Donation Details:', formData)
     }
 
     return (
-        <div className="container">
-            <h1>Request Disaster Relief Assistance</h1>
-
-            <div className="form-container">
-                <h2>Help Us Help You</h2>
-
-                <form onSubmit={handleSubmit}>
-                    <FormField
-                        label="Full Name"
-                        type="text"
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        required
-                    />
-                    <FormField
-                        label="Email Address"
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                    <FormField
-                        label="Phone Number"
-                        type="tel"
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleChange}
-                        required
-                    />
-                    <FormField
-                        label="Aadhaar Number"
-                        type="text"
-                        name="aadhaarNumber"
-                        value={formData.aadhaarNumber}
-                        onChange={handleChange}
-                        pattern="\d{12}"
-                        title="12-digit Aadhaar number"
-                        required
-                    />
-                    <FormField
-                        label="Wallet Address"
-                        type="text"
-                        name="walletAddress"
-                        value={formData.walletAddress}
-                        onChange={handleChange}
-                        pattern="^0x[a-fA-F0-9]{40}$"
-                        title="Valid Ethereum wallet address"
-                        required
-                    />
-
+        <div className="bg-gray-900 min-h-screen flex items-center justify-center p-6">
+            <div className="max-w-md w-full bg-gray-800 rounded-lg p-8 shadow-lg">
+                <h1 className="text-3xl font-bold text-white mb-6 text-center">
+                    Donate Ethereum
+                </h1>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label
+                            className="block text-gray-300 mb-2"
+                            htmlFor="donorName"
+                        >
+                            Your Name
+                        </label>
+                        <input
+                            type="text"
+                            id="donorName"
+                            name="donorName"
+                            required
+                            className="w-full p-3 bg-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value={formData.donorName}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div>
+                        <label
+                            className="block text-gray-300 mb-2"
+                            htmlFor="donationAmount"
+                        >
+                            Donation Amount (ETH)
+                        </label>
+                        <input
+                            type="number"
+                            id="donationAmount"
+                            name="donationAmount"
+                            required
+                            min="0.01"
+                            step="0.01"
+                            className="w-full p-3 bg-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value={formData.donationAmount}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <button
                         type="submit"
-                        className="submit-button"
-                        disabled={isSubmitting}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg transition-colors"
                     >
-                        {isSubmitting ? 'Submitting...' : 'Submit Aid Request'}
+                        Donate
                     </button>
                 </form>
-            </div>
-
-            <div className="how-it-works">
-                <h2>How It Works</h2>
-                <div className="steps">
-                    <Step
-                        number={1}
-                        title="Submit Request"
-                        description="Provide your details and describe your needs."
-                    />
-                    <Step
-                        number={2}
-                        title="Verification"
-                        description="Our team verifies your identity and situation within 24 hours."
-                    />
-                    <Step
-                        number={3}
-                        title="Aid Disbursement"
-                        description="Funds are sent directly to your wallet address."
-                    />
-                </div>
             </div>
         </div>
     )
 }
 
-// Reusable FormField Component
-const FormField = ({
-    label,
-    type,
-    name,
-    value,
-    onChange,
-    required,
-    pattern,
-    title,
-}) => (
-    <div className="form-field">
-        <label>{label}</label>
-        <input
-            type={type}
-            name={name}
-            value={value}
-            onChange={onChange}
-            required={required}
-            pattern={pattern}
-            title={title}
-        />
-    </div>
-)
-
-// Reusable Step Component
-const Step = ({ number, title, description }) => (
-    <div className="step">
-        <div className="step-number">{number}</div>
-        <h3>{title}</h3>
-        <p>{description}</p>
-    </div>
-)
-
-export default RequestAidPage
+export default DonateForm

@@ -133,6 +133,57 @@ const RequestAidPage = () => {
                         </button>
                     </form>
                 </div>
+                {/* How It Works Section */}
+                <div className=" mt-6">
+                    <h2 className="text-2xl font-semibold mb-6">
+                        How It Works
+                    </h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* Box 1: Submit Request */}
+                        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+                            <div className="text-4xl font-bold text-blue-500 mb-4">
+                                1
+                            </div>
+                            <h3 className="text-xl font-semibold mb-2">
+                                Submit Request
+                            </h3>
+                            <p className="text-gray-300">
+                                Provide your details and describe your needs.
+                                Our system will securely store your information.
+                            </p>
+                        </div>
+
+                        {/* Box 2: Verification */}
+                        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+                            <div className="text-4xl font-bold text-blue-500 mb-4">
+                                2
+                            </div>
+                            <h3 className="text-xl font-semibold mb-2">
+                                Verification
+                            </h3>
+                            <p className="text-gray-300">
+                                Our team verifies your identity and situation
+                                within 24 hours using blockchain-secured
+                                processes.
+                            </p>
+                        </div>
+
+                        {/* Box 3: Aid Disbursement */}
+                        <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
+                            <div className="text-4xl font-bold text-blue-500 mb-4">
+                                3
+                            </div>
+                            <h3 className="text-xl font-semibold mb-2">
+                                Aid Disbursement
+                            </h3>
+                            <p className="text-gray-300">
+                                Once verified, funds are sent directly to your
+                                wallet address via smart contracts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
