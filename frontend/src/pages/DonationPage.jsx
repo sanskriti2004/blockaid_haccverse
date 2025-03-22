@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const DonateForm = () => {
+    const navigate = useNavigate()
+
     const [formData, setFormData] = useState({
         donorName: '',
         donationAmount: '',
@@ -15,6 +18,15 @@ const DonateForm = () => {
         e.preventDefault()
         // Handle the form submission logic here
         console.log('Donation Details:', formData)
+
+        // Reset the form
+        setFormData({
+            donorName: '',
+            donationAmount: '',
+        })
+
+        // Redirect to the root path
+        navigate('/thank-you-req')
     }
 
     return (

@@ -19,19 +19,24 @@ const RequestAidPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        // Get existing aid requests from local storage
+        // Retrieve existing aid requests from local storage
         const existingRequests =
             JSON.parse(localStorage.getItem('aidRequests')) || []
 
-        // Add the new request
-        const newRequest = { ...formData, id: Date.now() } // Add a unique ID
+        // Create a new request with a unique ID
+        const newRequest = { ...formData, id: Date.now() }
+
+        // Update the list of requests
         const updatedRequests = [...existingRequests, newRequest]
 
-        // Save back to local storage
+        // Save the updated list back to local storage
         localStorage.setItem('aidRequests', JSON.stringify(updatedRequests))
 
-        // Navigate to the "Thank You" page
-        navigate('/thank-you')
+        // Display a success alert
+        // alert('Your request has been submitted successfully!')
+
+        // Redirect to the "Explore" page
+        navigate('/thank-you-req-2')
     }
 
     return (

@@ -5,7 +5,8 @@ import ExplorePage from './pages/ExplorePage'
 import AboutPage from './pages/AboutPage'
 import FAQPage from './pages/FAQPage'
 import RequestAidPage from './pages/RequestAidPage'
-import ThankYouPage from './pages/ThankYouPage'
+import ThankYouPageReq from './pages/ThankYouPageReq'
+import ThankYouPageReq2 from './pages/ThankYouPageReq2'
 import DonationPage from './pages/DonationPage'
 import Navbar from './components/Navbar'
 import NotFoundPage from './components/NotFoundPage'
@@ -40,13 +41,20 @@ function App() {
                         />
                         <Route path="/marketplace" />
                         <Route path="/create" />
-                        <Route path="/home" element={<HomePage />}></Route>
                         <Route path="/explore" element={<ExplorePage />} />
                         <Route
                             path="/donate/:campaignId"
                             element={<DonationPage />}
                         />
-                        <Route path="/thank-you" element={<ThankYouPage />} />
+
+                        <Route
+                            path="/thank-you-req"
+                            element={<ThankYouPageReq />}
+                        />
+                        <Route
+                            path="/thank-you-req-2"
+                            element={<ThankYouPageReq2 />}
+                        />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/faqs" element={<FAQPage />} />
                         <Route
