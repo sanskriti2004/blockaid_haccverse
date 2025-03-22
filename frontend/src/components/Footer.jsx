@@ -1,6 +1,7 @@
 // DONE
 // src/components/Footer.jsx
 import React, { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faTwitter,
@@ -63,27 +64,18 @@ const Footer = () => {
                         </h4>
                         <ul className="space-y-2">
                             <li>
-                                <a
-                                    href="/"
-                                    className="text-gray-400 hover:text-white transition-colors"
-                                >
-                                    Home
+                                <a className="text-gray-400 hover:text-white transition-colors">
+                                    <Link to="/"> Home</Link>
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    href="/explore"
-                                    className="text-gray-400 hover:text-white transition-colors"
-                                >
-                                    Explore
+                                <a className="text-gray-400 hover:text-white transition-colors">
+                                    <Link to="/explore">Explore</Link>
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    href="/about"
-                                    className="text-gray-400 hover:text-white transition-colors"
-                                >
-                                    About
+                                <a className="text-gray-400 hover:text-white transition-colors">
+                                    <Link to="/about">About</Link>
                                 </a>
                             </li>
 
@@ -92,15 +84,12 @@ const Footer = () => {
                                     href="/about"
                                     className="text-gray-400 hover:text-white transition-colors"
                                 >
-                                    How It Works
+                                    <Link to="/about">How it Works</Link>
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    href="/faqs"
-                                    className="text-gray-400 hover:text-white transition-colors"
-                                >
-                                    FAQ
+                                <a className="text-gray-400 hover:text-white transition-colors">
+                                    <Link to="/faqs">FAQ</Link>
                                 </a>
                             </li>
                         </ul>

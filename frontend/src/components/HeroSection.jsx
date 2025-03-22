@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { Link } from 'react-router-dom'
 
 const HeroSection = () => {
     const canvasRef = useRef(null)
@@ -34,10 +35,10 @@ const HeroSection = () => {
                     #DeRiskWithBlockAid
                 </p>
                 <a
-                    href="/about"
+                    // href="/about"
                     className="bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-full px-8 py-3 text-lg hover:opacity-90 transition-opacity"
                 >
-                    Learn More
+                    <Link to="/about">Learn More</Link>
                 </a>
             </div>
         </div>

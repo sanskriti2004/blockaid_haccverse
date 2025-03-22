@@ -29,7 +29,7 @@ const ThankYouPage = () => {
                             onClick={() => (window.location.href = '/')}
                             className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors"
                         >
-                            <Link to="/">Return Home</Link>
+                            <a href="/">Return Home</a>
                         </button>
                     </div>
                 </div>
