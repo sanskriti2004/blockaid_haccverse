@@ -27,57 +27,123 @@ const Chatbot = () => {
     }
 
     const getBotResponse = (input) => {
-        if (input.includes('hi') || input.includes('hello')) {
-            return 'Hello! Welcome to Blockaid. How can I assist you with disaster relief efforts today?'
-        } else if (input.includes('donate') || input.includes('contribute')) {
-            return 'To donate, select a active relief campaign, choose amount, and complete payment. All donations go directly to verified relief organizations. Would you like help with donating?'
-        } else if (input.includes('track') || input.includes('funds')) {
-            return 'All donations are tracked transparently on blockchain. You can view fund usage in real-time through our public ledger. Need help accessing tracking?'
-        } else if (input.includes('emergency') || input.includes('urgent')) {
-            return 'For immediate disaster assistance, please contact local authorities. We can help you find verified relief organizations in your area.'
-        } else if (input.includes('volunteer') || input.includes('help')) {
-            return 'We partner with certified relief organizations. Would you like information about volunteering opportunities?'
-        } else if (input.includes('disaster') || input.includes('crisis')) {
-            return 'We currently support relief efforts for: Floods, Earthquakes, Wildfires, and Humanitarian Crises. Which would you like to learn about?'
-        } else if (input.includes('transparency') || input.includes('trust')) {
-            return 'Blockaid uses blockchain to ensure 100% fund traceability. All transactions are publicly verifiable. Want to see our audit process?'
-        } else if (input.includes('campaign') || input.includes('active')) {
-            return 'Current active campaigns: 1) Kerala Flood Relief 2) Nepal Earthquake 3) African Drought Crisis. Which would you like to support?'
-        } else if (input.includes('organization') || input.includes('ngo')) {
-            return 'We work with certified NGOs like Red Cross and UNICEF. All partners undergo strict verification. Need specific organization info?'
-        } else if (input.includes('receipt') || input.includes('tax')) {
-            return 'Donation receipts with tax exemption certificates are issued immediately after payment. Need help accessing yours?'
-        } else if (input.includes('impact') || input.includes('effect')) {
-            return 'Our platform has delivered $2.3M in aid to 15+ disasters. Want specific impact reports?'
-        } else if (
-            input.includes('start campaign') ||
-            input.includes('fundraiser')
-        ) {
-            return 'To start a relief campaign, organizations must complete KYC verification. Need help with application?'
-        } else if (input.includes('goods') || input.includes('supplies')) {
-            return 'We facilitate physical donations through partner logistics networks. Would you like information about drop-off locations?'
-        } else if (input.includes('fee') || input.includes('charge')) {
-            return 'Blockaid charges 0% platform fee - 100% of donations go to relief. Operational costs are covered separately.'
-        } else if (input.includes('history') || input.includes('past')) {
-            return 'You can view your donation history in your profile section. Need help accessing it?'
-        } else if (input.includes('verify') || input.includes('legit')) {
-            return 'All campaigns are verified through: 1) Government partnerships 2) On-ground audits 3) Blockchain tracking. Want verification details?'
-        } else if (input.includes('news') || input.includes('update')) {
-            return 'Real-time disaster updates are available in our Situation Room. Would you like to view current crisis reports?'
-        } else if (input.includes('partner') || input.includes('corporate')) {
-            return 'Corporate partners receive impact reports and verification badges. Contact partnerships@blockaid.org for collaboration.'
-        } else if (input.includes('security') || input.includes('safe')) {
-            return 'We use bank-grade encryption and blockchain verification. Your data and donations are 100% secure.'
-        } else if (input.includes('thank') || input.includes('appreciate')) {
-            return 'Thank you for supporting disaster relief efforts! Your contribution makes a real difference.'
-        } else if (input.includes('goodbye') || input.includes('bye')) {
-            return 'Thank you for using Blockaid! Together we can build a more resilient world.'
-        } else {
-            return 'I specialize in disaster relief support. Ask about donations, campaign verification, or impact tracking!'
+        const prompts = [
+            {
+                keywords: ['hi', 'hello'],
+                response:
+                    'Hello! Welcome to Blockaid. How can I assist you with disaster relief efforts today?',
+            },
+            {
+                keywords: ['donate', 'contribute'],
+                response:
+                    'To donate, select an active relief campaign, choose an amount, and complete the payment. All donations go directly to verified relief organizations. Would you like help with donating?',
+            },
+            {
+                keywords: ['track', 'funds'],
+                response:
+                    'All donations are tracked transparently on the blockchain. You can view fund usage in real-time through our public ledger. Need help accessing tracking?',
+            },
+            {
+                keywords: ['emergency', 'urgent'],
+                response:
+                    'For immediate disaster assistance, please contact local authorities. We can help you find verified relief organizations in your area.',
+            },
+            {
+                keywords: ['volunteer', 'help'],
+                response:
+                    'We partner with certified relief organizations. Would you like information about volunteering opportunities?',
+            },
+            {
+                keywords: ['disaster', 'crisis'],
+                response:
+                    'We currently support relief efforts for: Floods, Earthquakes, Wildfires, and Humanitarian Crises. Which would you like to learn about?',
+            },
+            {
+                keywords: ['transparency', 'trust'],
+                response:
+                    'Blockaid uses blockchain to ensure 100% fund traceability. All transactions are publicly verifiable. Want to see our audit process?',
+            },
+            {
+                keywords: ['campaign', 'active'],
+                response:
+                    'Current active campaigns: 1) Kerala Flood Relief 2) Nepal Earthquake 3) African Drought Crisis. Which would you like to support?',
+            },
+            {
+                keywords: ['organization', 'ngo'],
+                response:
+                    'We work with certified NGOs like Red Cross and UNICEF. All partners undergo strict verification. Need specific organization info?',
+            },
+            {
+                keywords: ['receipt', 'tax'],
+                response:
+                    'Donation receipts with tax exemption certificates are issued immediately after payment. Need help accessing yours?',
+            },
+            {
+                keywords: ['impact', 'effect'],
+                response:
+                    'Our platform has delivered $2.3M in aid to 15+ disasters. Want specific impact reports?',
+            },
+            {
+                keywords: ['start campaign', 'fundraiser'],
+                response:
+                    'To start a relief campaign, organizations must complete KYC verification. Need help with the application?',
+            },
+            {
+                keywords: ['goods', 'supplies'],
+                response:
+                    'We facilitate physical donations through partner logistics networks. Would you like information about drop-off locations?',
+            },
+            {
+                keywords: ['fee', 'charge'],
+                response:
+                    'Blockaid charges 0% platform fee - 100% of donations go to relief. Operational costs are covered separately.',
+            },
+            {
+                keywords: ['history', 'past'],
+                response:
+                    'You can view your donation history in your profile section. Need help accessing it?',
+            },
+            {
+                keywords: ['verify', 'legit'],
+                response:
+                    'All campaigns are verified through: 1) Government partnerships 2) On-ground audits 3) Blockchain tracking. Want verification details?',
+            },
+            {
+                keywords: ['news', 'update'],
+                response:
+                    'Real-time disaster updates are available in our Situation Room. Would you like to view current crisis reports?',
+            },
+            {
+                keywords: ['partner', 'corporate'],
+                response:
+                    'Corporate partners receive impact reports and verification badges. Contact partnerships@blockaid.org for collaboration.',
+            },
+            {
+                keywords: ['security', 'safe'],
+                response:
+                    'We use bank-grade encryption and blockchain verification. Your data and donations are 100% secure.',
+            },
+            {
+                keywords: ['thank', 'appreciate'],
+                response:
+                    'Thank you for supporting disaster relief efforts! Your contribution makes a real difference.',
+            },
+            {
+                keywords: ['goodbye', 'bye'],
+                response:
+                    'Thank you for using Blockaid! Together we can build a more resilient world.',
+            },
+        ]
+
+        for (const prompt of prompts) {
+            if (prompt.keywords.some((keyword) => input.includes(keyword))) {
+                return prompt.response
+            }
         }
+
+        return 'I specialize in disaster relief support. Ask about donations, campaign verification, or impact tracking!'
     }
 
-    // Rest of the component remains the same
     return (
         <div className="relative">
             {/* Chat Button */}
