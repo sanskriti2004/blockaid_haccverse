@@ -50,7 +50,6 @@ const Navbar = () => {
     }, [])
 
     const navItems = [
-        // { name: 'Home', link: '/' },
         { name: 'Explore', link: '/explore' },
         { name: 'About', link: '/about' },
         { name: 'FAQs', link: '/faqs' },
@@ -66,7 +65,11 @@ const Navbar = () => {
                         alt="DecenTrade Logo"
                     />
                 </Link>
-                <a href="/">BlockAid</a>
+                <Link to="/" className="text-white font-bold text-xl ml-2">
+                    {' '}
+                    {/* changed here */}
+                    BlockAid
+                </Link>
             </div>
 
             <div className="hamburger-menu">
@@ -76,9 +79,13 @@ const Navbar = () => {
             </div>
 
             <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
-                <a href="/" className="navbar-link">
+                <Link
+                    to="/"
+                    className="navbar-link"
+                    onClick={() => setIsMenuOpen(false)}
+                >
                     Home
-                </a>
+                </Link>
                 {navItems.map((item) => (
                     <Link
                         key={item.name}

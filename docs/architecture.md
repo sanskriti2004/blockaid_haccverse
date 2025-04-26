@@ -1,7 +1,7 @@
-## Architecture of DecenTrade
+## Architecture of BlockAid
 
 <pre>
-DecenTrade/
+blockaid_haccverse/
 │
 ├── smart-contracts/
 │ ├── contracts/

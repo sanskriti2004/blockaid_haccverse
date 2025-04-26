@@ -14,9 +14,24 @@ const DonateForm = () => {
         setFormData({ ...formData, [name]: value })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        // Handle the form submission logic here
+
+        // Check if wallet is connected
+        if (window.ethereum) {
+            const accounts = await window.ethereum.request({
+                method: 'eth_accounts',
+            })
+            if (!accounts || accounts.length === 0) {
+                alert('Please connect your wallet before donating!')
+                return
+            }
+        } else {
+            alert('MetaMask is not installed. Please install it to donate!')
+            return
+        }
+
+        // Wallet is connected, proceed
         console.log('Donation Details:', formData)
 
         // Reset the form
@@ -25,7 +40,7 @@ const DonateForm = () => {
             donationAmount: '',
         })
 
-        // Redirect to the root path
+        // Redirect to the thank-you page
         navigate('/thank-you-req')
     }
 

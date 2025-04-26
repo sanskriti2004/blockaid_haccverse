@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import FAQImage from '../assets/faq-image.png'
 import '../styles/faq.css'
@@ -97,9 +97,19 @@ const FAQPage = () => {
         setSortAsc(!sortAsc)
     }
 
+    // Page load animation effect
+    const [isLoaded, setIsLoaded] = useState(false)
+    useEffect(() => {
+        setIsLoaded(true)
+    }, [])
+
     return (
         <>
-            <div className="min-h-screen p-8 bg-gray-50 dark:bg-slate-900">
+            <div
+                className={`min-h-screen p-8 bg-gray-50 dark:bg-slate-900 transition-opacity duration-1000 ${
+                    isLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+            >
                 <div className="mx-auto flex flex-col lg:flex-row">
                     <div className="lg:w-3/6 pr-8">
                         <div className="text-center lg:text-left pt-6">
@@ -117,7 +127,11 @@ const FAQPage = () => {
                                 {faqData.map((item, index) => (
                                     <div
                                         key={index}
-                                        className={`transition duration-300 ease-in-out rounded-lg shadow-md ${cardColors[index % cardColors.length]}`}
+                                        className={`transition-all duration-500 ease-in-out rounded-lg shadow-md ${cardColors[index % cardColors.length]} ${
+                                            isLoaded
+                                                ? 'opacity-100'
+                                                : 'opacity-0'
+                                        }`}
                                     >
                                         <button
                                             className="w-full text-left p-4 text-white rounded-lg focus:outline-none"
@@ -135,7 +149,11 @@ const FAQPage = () => {
                                             </div>
                                         </button>
                                         <div
-                                            className={`overflow-hidden transition-all duration-500 ease-in-out ${activeIndex === index ? 'max-h-48' : 'max-h-0'}`}
+                                            className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                                                activeIndex === index
+                                                    ? 'max-h-48'
+                                                    : 'max-h-0'
+                                            }`}
                                         >
                                             <div className="p-4 bg-white rounded-lg mt-2 shadow-inner text-gray-600 border-l-4 border-indigo-600">
                                                 {item.answer}

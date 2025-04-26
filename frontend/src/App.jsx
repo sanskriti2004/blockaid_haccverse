@@ -25,13 +25,11 @@ function App() {
     return (
         <BrowserRouter>
             <div className="min-h-screen">
-                {/* Render CustomCursor */}
-
                 <Navbar wallet={wallet} setWallet={setWallet} />
                 <main className="flex-grow">
                     <Routes>
                         <Route
-                            path="/blockaid_haccverse/"
+                            path="/"
                             element={
                                 <HomePage
                                     wallet={wallet}
@@ -39,14 +37,13 @@ function App() {
                                 />
                             }
                         />
-                        <Route path="/marketplace" />
-                        <Route path="/create" />
                         <Route path="/explore" element={<ExplorePage />} />
+                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/faqs" element={<FAQPage />} />
                         <Route
-                            path="/donate/:campaignId"
-                            element={<DonationPage />}
+                            path="/request-aid"
+                            element={<RequestAidPage />}
                         />
-
                         <Route
                             path="/thank-you-req"
                             element={<ThankYouPageReq />}
@@ -55,21 +52,13 @@ function App() {
                             path="/thank-you-req-2"
                             element={<ThankYouPageReq2 />}
                         />
-                        <Route path="/about" element={<AboutPage />} />
-                        <Route path="/faqs" element={<FAQPage />} />
                         <Route
                             path="/donate/:campaignId"
                             element={<DonationPage />}
                         />
-                        <Route
-                            path="/request-aid"
-                            element={<RequestAidPage />}
-                        />
                         <Route path="*" element={<NotFoundPage />} />
                     </Routes>
                 </main>
-
-                {/* Chatbot and Footer Components */}
                 <MyChatbot />
                 <Footer />
                 <ScrollToTop />

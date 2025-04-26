@@ -1,6 +1,4 @@
-// DONE
-// src/components/Footer.jsx
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -9,10 +7,16 @@ import {
     faInstagram,
 } from '@fortawesome/free-brands-svg-icons'
 import logo from '../assets/decentrade-logo.png'
-import Chatbot from '../Chatbot' // Import the Chatbot component
+import Chatbot from '../Chatbot'
 
 const Footer = () => {
     const waveRef = useRef(null)
+
+    // Scroll to top on route change
+    useEffect(() => {
+        window.scrollTo(0, 0) // Scrolls to the top of the page on component load or route change
+    }, [])
+
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY
@@ -20,7 +24,6 @@ const Footer = () => {
                 waveRef.current.style.transform = `translate3d(0, ${scrollPosition * 0.1}px, 0)`
             }
         }
-
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
@@ -41,104 +44,84 @@ const Footer = () => {
                     />
                 </svg>
             </div>
+
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    {/* Logo and description */}
                     <div>
                         <h3 className="text-xl font-bold mb-4">BlockAid</h3>
                         <p className="text-gray-400">
                             Donate, track, and make a difference with
                             transparent disaster relief efforts.
                         </p>
-                        <span>
-                            <img
-                                style={{ width: '7.5rem' }}
-                                className="logo-img mx-12 my-10"
-                                src={logo}
-                                alt={logo}
-                            />
-                        </span>
+                        <img
+                            style={{ width: '7.5rem' }}
+                            className="logo-img mx-12 my-10"
+                            src={logo}
+                            alt="BlockAid Logo"
+                        />
                     </div>
+
+                    {/* Quick Links */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">
                             Quick Links
                         </h4>
                         <ul className="space-y-2">
                             <li>
-                                <a
-                                    href="/"
+                                <Link
+                                    to="/"
                                     className="text-gray-400 hover:text-white transition-colors"
                                 >
                                     Home
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a className="text-gray-400 hover:text-white transition-colors">
-                                    <Link to="/explore">Explore</Link>
-                                </a>
-                            </li>
-                            <li>
-                                <a className="text-gray-400 hover:text-white transition-colors">
-                                    <Link to="/about">About</Link>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                    href="/about"
+                                <Link
+                                    to="/explore"
                                     className="text-gray-400 hover:text-white transition-colors"
                                 >
-                                    <Link to="/about">How it Works</Link>
-                                </a>
+                                    Campaigns
+                                </Link>
                             </li>
                             <li>
-                                <a className="text-gray-400 hover:text-white transition-colors">
-                                    <Link to="/faqs">FAQ</Link>
-                                </a>
+                                <Link
+                                    to="/about"
+                                    className="text-gray-400 hover:text-white transition-colors"
+                                >
+                                    How it works
+                                </Link>
                             </li>
                         </ul>
                     </div>
 
+                    {/* Community */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">
                             Community
                         </h4>
                         <ul className="space-y-2">
                             <li>
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/faqs"
                                     className="text-gray-400 hover:text-white transition-colors"
                                 >
-                                    Help Center
-                                </a>
+                                    FAQ
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/faqs"
                                     className="text-gray-400 hover:text-white transition-colors"
                                 >
-                                    Partners
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-400 hover:text-white transition-colors"
-                                >
-                                    Suggestions
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                    href="#"
-                                    className="text-gray-400 hover:text-white transition-colors"
-                                >
-                                    Newsletter
-                                </a>
+                                    Forum
+                                </Link>
                             </li>
                         </ul>
                     </div>
                 </div>
+
+                {/* Bottom area */}
                 <div className="mt-10 pt-8 border-t border-gray-800 flex flex-col items-center">
                     <p className="text-gray-400">
                         &copy; 2025 BlockAid. All rights reserved.
@@ -165,7 +148,9 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <Chatbot /> {/* Add the Chatbot component here */}
+
+            {/* Chatbot */}
+            <Chatbot />
         </footer>
     )
 }
