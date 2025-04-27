@@ -1,5 +1,4 @@
-import { useLocation } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 const ThankYouPage = () => {
     const location = useLocation()
@@ -25,12 +24,12 @@ const ThankYouPage = () => {
                     </p>
 
                     <div className="mt-8">
-                        <button
-                            onClick={() => (window.location.href = '/home')}
-                            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+                        <Link
+                            to="/"
+                            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors"
                         >
-                            <a href="/">Return Home</a>
-                        </button>
+                            Return Home
+                        </Link>
                     </div>
                 </div>
             </div>

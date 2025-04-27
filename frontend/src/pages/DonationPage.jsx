@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ethers } from 'ethers'
 
 const DonateForm = () => {
     const navigate = useNavigate()
@@ -17,31 +18,52 @@ const DonateForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        // Check if wallet is connected
-        if (window.ethereum) {
-            const accounts = await window.ethereum.request({
-                method: 'eth_accounts',
-            })
-            if (!accounts || accounts.length === 0) {
-                alert('Please connect your wallet before donating!')
-                return
-            }
-        } else {
-            alert('MetaMask is not installed. Please install it to donate!')
+        if (!window.ethereum) {
+            alert('MetaMask is not installed!')
             return
         }
 
-        // Wallet is connected, proceed
-        console.log('Donation Details:', formData)
+        try {
+            const accounts = await window.ethereum.request({
+                method: 'eth_requestAccounts',
+            })
+            const sender = accounts[0]
 
-        // Reset the form
-        setFormData({
-            donorName: '',
-            donationAmount: '',
-        })
+            const amountInEth = parseFloat(formData.donationAmount)
+            if (isNaN(amountInEth) || amountInEth <= 0) {
+                alert('Please enter a valid donation amount.')
+                return
+            }
 
-        // Redirect to the thank-you page
-        navigate('/thank-you-req')
+            const amountInWei = BigInt(Math.floor(amountInEth * 1e18)).toString(
+                16
+            ) // ETH to Wei in hex
+
+            const tx = {
+                from: sender,
+                to: '0xfb5Cf9e91c3334CFbCA50491aBbDb5fBA652e80e', // <-- Replace this
+                value: '0x' + amountInWei,
+            }
+
+            const txHash = await window.ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [tx],
+            })
+
+            console.log('Transaction sent! Hash:', txHash)
+
+            // Reset the form
+            setFormData({
+                donorName: '',
+                donationAmount: '',
+            })
+
+            // Navigate to thank you page
+            navigate('/thank-you-req')
+        } catch (error) {
+            console.error('Transaction failed:', error)
+            alert('Transaction failed: ' + (error.message || 'Unknown error'))
+        }
     }
 
     return (
@@ -80,8 +102,8 @@ const DonateForm = () => {
                             id="donationAmount"
                             name="donationAmount"
                             required
-                            min="0.01"
-                            step="0.01"
+                            min="0.000001"
+                            step="0.000001"
                             className="w-full p-3 bg-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={formData.donationAmount}
                             onChange={handleChange}
