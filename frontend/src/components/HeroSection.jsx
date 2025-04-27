@@ -24,19 +24,19 @@ const HeroSection = () => {
     return (
         <div className="relative h-screen flex items-center justify-center overflow-hidden">
             <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-            <div className="relative z-10 text-center">
-                <h1 className="text-6xl font-bold mb-4 text-white">
+            <div className="relative z-10 text-center px-4 sm:px-8">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white">
                     Accessible Aid, Anywhere, Anytime
                 </h1>
-                <p className="text-xl mb-2 text-gray-300">
+                <p className="text-lg sm:text-xl mb-2 text-gray-300">
                     Securing Recovery, One Claim at a Time.
                 </p>
-                <p className="text-xl font-bold mb-6 text-gray-300">
+                <p className="text-lg sm:text-xl font-bold mb-6 text-gray-300">
                     #DeRiskWithBlockAid
                 </p>
                 <a
                     // href="/about"
-                    className="bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-full px-8 py-3 text-lg hover:opacity-90 transition-opacity"
+                    className="bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-full px-6 py-3 text-base sm:text-lg hover:opacity-90 transition-opacity"
                 >
                     <Link to="/about">Learn More</Link>
                 </a>

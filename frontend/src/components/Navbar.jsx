@@ -67,7 +67,6 @@ const Navbar = () => {
                 </Link>
                 <Link to="/" className="text-white font-bold text-xl ml-2">
                     {' '}
-                    {/* changed here */}
                     BlockAid
                 </Link>
             </div>
@@ -78,6 +77,7 @@ const Navbar = () => {
                 </button>
             </div>
 
+            {/* Dropdown menu for smaller screens */}
             <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
                 <Link
                     to="/"
@@ -96,24 +96,25 @@ const Navbar = () => {
                         {item.name}
                     </Link>
                 ))}
-            </div>
 
-            <div className="navbar-actions">
-                {walletAddress ? (
-                    <button
-                        className="connect-wallet-button"
-                        style={{ backgroundColor: 'green' }}
-                    >
-                        Wallet Connected
-                    </button>
-                ) : (
-                    <button
-                        onClick={connectWallet}
-                        className="connect-wallet-button"
-                    >
-                        Connect Wallet
-                    </button>
-                )}
+                {/* Move Connect Wallet Button inside the dropdown */}
+                <div className="navbar-actions">
+                    {walletAddress ? (
+                        <button
+                            className="connect-wallet-button"
+                            style={{ backgroundColor: 'green' }}
+                        >
+                            Wallet Connected
+                        </button>
+                    ) : (
+                        <button
+                            onClick={connectWallet}
+                            className="connect-wallet-button"
+                        >
+                            Connect Wallet
+                        </button>
+                    )}
+                </div>
             </div>
         </nav>
     )
